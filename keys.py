@@ -23,15 +23,27 @@ def get_key(chord1, chord2):
             print(string)
             print('='*(len(string)-1))
             print()
+
 def menu_loop():
     """Show the menu."""
     root1 = input("\nWhat is the root of the first chord? ").upper().strip()
     third1 = input("\nIs the chord maj, min, or dim?  ").lower().strip()
-    chord1 = root1 + ' ' + third1
     root2 = input("\nWhat is the root of the second chord?  ").upper().strip()
     third2 = input("\nIs the chord maj, min, or dim?  ").lower().strip()
-    chord2 = root2 + ' ' + third2
-    get_key(chord1, chord2)
+    return root1, third1, root2, third2
+
+def format_chord(root, third):
+    if ' ' in root:
+        root = root.replace(' ', '')
+    chord = root + ' ' + third
+    return chord
+
+
+
+
 
 if __name__ == '__main__':
-    menu_loop()
+    input = menu_loop()
+    chord1 = format_chord(input[0], input[1])
+    chord2 = format_chord(input[2], input[3])
+    get_key(chord1, chord2)
